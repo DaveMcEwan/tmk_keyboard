@@ -140,33 +140,35 @@ uint8_t matrix_key_count(void)
  *
  * Teensy
  * col: 0   1   2   3   4   5
- * pin: F0  F1  F4  F5  F6  F7 
+ * pin: D4  D5  C7  C6  D3  D2 
  */
 static void  init_cols(void)
 {
     // init on teensy
     // Input with pull-up(DDR:0, PORT:1)
-    DDRF  &= ~(1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1 | 1<<0);
-    PORTF |=  (1<<7 | 1<<6 | 1<<5 | 1<<4 | 1<<1 | 1<<0);
+    DDRC  &= ~(1<<7 | 1<<6);
+    PORTC |=  (1<<7 | 1<<6);
+    DDRD  &= ~(1<<4 | 1<<5 | 1<<3 | 1<<2);
+    PORTD |=  (1<<4 | 1<<5 | 1<<3 | 1<<2);
 }
 
 static matrix_row_t read_cols()
 {
     // read from teensy
     return
-        (PINF&(1<<0) ? 0 : (1<<0)) |
-        (PINF&(1<<1) ? 0 : (1<<1)) |
-        (PINF&(1<<4) ? 0 : (1<<2)) |
-        (PINF&(1<<5) ? 0 : (1<<3)) |
-        (PINF&(1<<6) ? 0 : (1<<4)) |
-        (PINF&(1<<7) ? 0 : (1<<5)) ;
+        (PIND&(1<<4) ? 0 : (1<<0)) |
+        (PIND&(1<<5) ? 0 : (1<<1)) |
+        (PINC&(1<<7) ? 0 : (1<<2)) |
+        (PINC&(1<<6) ? 0 : (1<<3)) |
+        (PIND&(1<<3) ? 0 : (1<<4)) |
+        (PIND&(1<<2) ? 0 : (1<<5)) ;
 }
 
 /* Row pin configuration
  *
  * Teensy
- * row: 0   1   2   3   4   5   6   7   8   9   10  11  12  13
- * pin: B4  D7  D4  C7  D1  D0  B7  B0  B1  B2  B3  D2  D3  C6
+ * row: 0   1   2   3   4   5   6   7   8   9   A   B   C   D
+ * pin: B4  F7  F6  F5  F4  F1  F0  B0  B1  B2  B3  B7  D0  D1
  */
 static void unselect_rows()
 {
@@ -174,10 +176,10 @@ static void unselect_rows()
     // Hi-Z(DDR:0, PORT:0) to unselect
     DDRB  &= ~(1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<7);
     PORTB &= ~(1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<7);
-    DDRD  &= ~(1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<7);
-    PORTD &= ~(1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<7);
-    DDRC  &= ~(1<<6 | 1<<7);
-    PORTC &= ~(1<<6 | 1<<7);
+    DDRD  &= ~(1<<0 | 1<<1);
+    PORTD &= ~(1<<0 | 1<<1);
+    DDRF  &= ~(1<<0 | 1<<1 | 1<<4 | 1<<5 | 1<<6 | 1<<7);
+    PORTF &= ~(1<<0 | 1<<1 | 1<<4 | 1<<5 | 1<<6 | 1<<7);
 }
 
 static void select_row(uint8_t row)
@@ -190,28 +192,28 @@ static void select_row(uint8_t row)
             PORTB &= ~(1<<4);
             break;
         case 1:
-            DDRD  |= (1<<7);
-            PORTD &= ~(1<<7);
+            DDRF  |= (1<<7);
+            PORTF &= ~(1<<7);
             break;
         case 2:
-            DDRD  |= (1<<4);
-            PORTD &= ~(1<<4);
+            DDRF  |= (1<<6);
+            PORTF &= ~(1<<6);
             break;
         case 3:
-            DDRC  |= (1<<7);
-            PORTC &= ~(1<<7);
+            DDRF  |= (1<<5);
+            PORTF &= ~(1<<5);
             break;
         case 4:
-            DDRD  |= (1<<1);
-            PORTD &= ~(1<<1);
+            DDRF  |= (1<<4);
+            PORTF &= ~(1<<4);
             break;
         case 5:
-            DDRD  |= (1<<0);
-            PORTD &= ~(1<<0);
+            DDRF  |= (1<<1);
+            PORTF &= ~(1<<1);
             break;
         case 6:
-            DDRB  |= (1<<7);
-            PORTB &= ~(1<<7);
+            DDRF  |= (1<<0);
+            PORTF &= ~(1<<0);
             break;
 
         case 7:
@@ -231,16 +233,16 @@ static void select_row(uint8_t row)
             PORTB &= ~(1<<3);
             break;
         case 11:
-            DDRD  |= (1<<2);
-            PORTD &= ~(1<<2);
+            DDRB  |= (1<<7);
+            PORTB &= ~(1<<7);
             break;
         case 12:
-            DDRD  |= (1<<3);
-            PORTD &= ~(1<<3);
+            DDRD  |= (1<<0);
+            PORTD &= ~(1<<0);
             break;
         case 13:
-            DDRC  |= (1<<6);
-            PORTC &= ~(1<<6);
+            DDRD  |= (1<<1);
+            PORTD &= ~(1<<1);
             break;
     }
 }
