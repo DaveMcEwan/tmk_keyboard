@@ -4,39 +4,39 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,--------------------------------------------------.           ,--------------------------------------------------.
      * |  Esc   |   1  |   2  |   3  |   4  |   5  |  F4  |           |  F5  |   6  |   7  |   8  |   9  |   0  |   /    |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-     * |  Tab   |   '  |   ,  |   .  |   P  |   Y  | Home |           |  [   |   F  |   G  |   C  |   R  |   L  |   =    |
+     * |  Tab   |   '  |   ,  |   .  |   P  |   Y  | LAlt |           |  [   |   F  |   G  |   C  |   R  |   L  |   =    |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
      * |  ~L1   |   A  |   O  |   E  |   U  |   I  |------|           |------|   D  |   H  |   T  |   N  |   S  |   -    |
-     * |--------+------+------+------+------+------| End  |           |  ]   |------+------+------+------+------+--------|
-     * | LCtrl  |   ;  |   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  | RCtrl  |
+     * |--------+------+------+------+------+------|  ~   |           |  ]   |------+------+------+------+------+--------|
+     * |  BkSp  |   ;  |   Q  |   J  |   K  |   X  |      |           |      |   B  |   M  |   W  |   V  |   Z  | RCtrl  |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   | PgUp | PgDn | App  | Copy |Paste |                                       | Left |  Up  |  Dn  | Right|   \  |
+     *   |  Del | Home | PgDn | PgUp | End  |                                       | Left |  Up  |  Dn  | Right|   \  |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        |  ~   | LAlt |       | Mute | RGui |
+     *                                        | Vol+ | Mute |       | App  | RGui |
      *                                 ,------|------|------|       |------+------+------.
-     *                                 |      |      |  Del |       |RShift|      |      |
-     *                                 |LShift| BkSp |------|       |------| Enter| Space|
+     *                                 |      |      | Vol- |       |RShift|      |      |
+     *                                 |LShift|LCtrl |------|       |------| Enter| Space|
      *                                 |      |      |  ~L2 |       | ~L2  |      |      |
      *                                 `--------------------'       `--------------------'
      */
     KEYMAP(
         // left hand
         ESC,  1,   2,   3,   4,   5,   F4,
-        TAB,  QUOT,COMM,DOT, P,   Y,   HOME,
+        TAB,  QUOT,COMM,DOT, P,   Y,   LALT,
         FN1,  A,   O,   E,   U,   I,
-        LCTL, SCLN,Q,   J,   K,   X,   END,
-        PGUP, PGDN,APP, COPY,PASTE,
-                                      GRV, LALT,
-                                           DEL,
-                                LSFT,BSPC, FN2,
+        BSPC, SCLN,Q,   J,   K,   X,   GRV,
+        DEL,  HOME,PGDN,PGUP,END,
+                                     VOLU, MUTE,
+                                           VOLD,
+                                LSFT,LCTL, FN2,
         // right hand
              F5,  6,   7,   8,   9,   0,   SLSH,
              LBRC,F,   G,   C,   R,   L,   EQL,
                   D,   H,   T,   N,   S,   MINS,
              RBRC,B,   M,   W,   V,   Z,   RCTL,
                        LEFT,UP,  DOWN,RGHT,BSLS,
-        MUTE,RGUI,
+        APP, RGUI,
         RSFT,
         FN2, ENT, SPC
     ),
@@ -47,31 +47,31 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |        |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |           |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |  PrtSc |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
-     * |--------+------+------+------+------+------| Vol+ |           |      |------+------+------+------+------+--------|
+     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
      * |        |      |      |      |      |      |------|           |------|      |MsLClk|MsMClk|MsRClk|      |        |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-     * |        |      |      |      |      |      | Vol- |           |      |      |ScrLft|ScrUp |ScrUp |ScrRgt|        |
+     * |        |      |      |      |      |      |      |           |      |      |ScrLft|ScrUp |ScrUp |ScrRgt|        |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   |Teensy|      |      |      |      |                                       |MsLft | MsUp | MsDn |MsRgt |      |
+     *   | Ins  |      |      |      |      |                                       |MsLft | MsUp | MsDn |MsRgt |      |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
      *                                        | mac0 |      |       |      |      |
      *                                 ,------|------|------|       |------+------+------.
-     *                                 |      |      | Ins  |       |      |      |      |
+     *                                 |      |      |      |       |      |      |      |
      *                                 |      |      |------|       |------|      |      |
-     *                                 |      |      | ~L3  |       | ~L3  |      |      |
+     *                                 |      |      |      |       |      |      |      |
      *                                 `--------------------'       `--------------------'
      */
     KEYMAP(
         // left hand
       TRNS,   F1,  F2,  F3,  F4,  F5,  F6,
-      TRNS, TRNS,TRNS,TRNS,TRNS,TRNS,  VOLU,
+      TRNS, TRNS,TRNS,TRNS,TRNS,TRNS,  TRNS,
       TRNS, TRNS,TRNS,TRNS,TRNS,TRNS,
-      TRNS, TRNS,TRNS,TRNS,TRNS,TRNS,  VOLD,
-        FN0,TRNS,TRNS,TRNS,TRNS,
-                                     FN4,TRNS,
-                                          INS,
-                               TRNS,TRNS, FN3,
+      TRNS, TRNS,TRNS,TRNS,TRNS,TRNS,  TRNS,
+        INS,TRNS,TRNS,TRNS,TRNS,
+                                     FN3,TRNS,
+                                         TRNS,
+                               TRNS,TRNS,TRNS,
         // right hand
              F7,  F8,  F9, F10, F11, F12,PSCR,
            TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -80,7 +80,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      MS_L,MS_U,MS_D,MS_R,TRNS,
       TRNS,TRNS,
       TRNS,
-      FN3, TRNS,TRNS
+      TRNS,TRNS,TRNS
     ),
 
     /* Keymap 2: Flip default layer
@@ -89,18 +89,18 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |    /   |  0   |  9   |  8   |  7   |  6   |  F5  |           |  F4  |  5   |  4   |  3   |  2   |  1   |  Esc   |
      * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
      * |    =   |  L   |  R   |  C   |  G   |  F   |      |           |      |  Y   |  P   |  .   |  ,   |  '   |  Tab   |
-     * |--------+------+------+------+------+------|  [   |           | Home |------+------+------+------+------+--------|
-     * |    -   |  S   |  N   |  T   |  H   |  D   |------|           |------|  I   |  U   |  E   |  O   |  A   |  ~L3   |
+     * |--------+------+------+------+------+------|  [   |           | LAlt |------+------+------+------+------+--------|
+     * |    -   |  S   |  N   |  T   |  H   |  D   |------|           |------|  I   |  U   |  E   |  O   |  A   |        |
      * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-     * | RCtrl  |  Z   |  V   |  W   |  M   |  B   |  ]   |           | End  |  X   |  K   |  J   |  Q   |  ;   | LCtrl  |
+     * | RCtrl  |  Z   |  V   |  W   |  M   |  B   |  ]   |           |  ~   |  X   |  K   |  J   |  Q   |  ;   | BkSp   |
      * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   |  \   | Left |  Up  | Down | Right|                                       |Paste | Copy | App  | PgDn | PgUp |
+     *   |  \   | Left |  Up  | Down | Right|                                       | Home | PgUp | PgDn  | End | Del  |
      *   `----------------------------------'                                       `----------------------------------'
      *                                        ,-------------.       ,-------------.
-     *                                        | LGui | Mute |       | LAlt |  ~   |
+     *                                        | LGui | App  |       |      |      |
      *                                 ,------|------|------|       |------+------+------.
-     *                                 |      |      |RShift|       |  Del |      |      |
-     *                                 | Space| Enter|------|       |------| BkSp |LShift|
+     *                                 |      |      |RShift|       |      |      |      |
+     *                                 | Space| Enter|------|       |------|LCtrl |LShift|
      *                                 |      |      |      |       |      |      |      |
      *                                 `--------------------'       `--------------------'
      */
@@ -116,55 +116,13 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 SPC, ENT,TRNS,
         // right hand
              F4,   5,   4,    3,    2,    1,  ESC,
-           HOME,   Y,   P,  DOT, COMM, QUOT,  TAB,
-                   I,   U,    E,    O,    A,  FN3,
-            END,   X,   K,    J,    Q, SCLN,LCTRL,
-                    PASTE, COPY,  APP, PGDN, PGUP,
-      LALT, GRV,
-      DEL,
-    TRNS,BSPC, LSFT
-    ),
-
-    /* Keymap 3: Flip function/media layer
-     *
-     * ,--------------------------------------------------.           ,--------------------------------------------------.
-     * | PrtSc  |  F12 |  F11 |  F10 |  F9  |  F8  |  F7  |           |  F6  |  F5  |  F4  |  F3  |  F2  |  F1  |        |
-     * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-     * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
-     * |--------+------+------+------+------+------|      |           | Vol+ |------+------+------+------+------+--------|
-     * |        |      |MsRClk|MsMClk|MsLClk|      |------|           |------|      |      |      |      |      |        |
-     * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-     * |        |ScrLft|ScrDn |ScrUp |ScrRgt|      |      |           | Vol- |      |      |      |      |      |        |
-     * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
-     *   |      |MsLft | MsDn | MsUp |MsRgt |                                       |      |      |      |      |Teensy|
-     *   `----------------------------------'                                       `----------------------------------'
-     *                                        ,-------------.       ,-------------.
-     *                                        |      |      |       |      |      |
-     *                                 ,------|------|------|       |------+------+------.
-     *                                 |      |      |      |       | Ins  |      |      |
-     *                                 |      |      |------|       |------|      |      |
-     *                                 |      |      |      |       |      |      |      |
-     *                                 `--------------------'       `--------------------'
-     */
-    KEYMAP(
-        // left hand
-      PSCR,  F12, F11, F10,  F9,  F8,    F7,
-      TRNS, TRNS,TRNS,TRNS,TRNS,TRNS,  TRNS,
-        NO, TRNS,BTN2,BTN3,BTN1,TRNS,
-      TRNS, WH_L,WH_D,WH_U,WH_R,TRNS,  TRNS,
-      TRNS, MS_L,MS_D,MS_U,MS_R,
-                                    TRNS,TRNS,
-                                         TRNS,
-                               TRNS,TRNS,TRNS,
-        // right hand
-             F6,  F5,  F4,  F3,  F2,  F1,TRNS,
-           VOLU,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-           VOLD,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-                     TRNS,TRNS,TRNS,TRNS,FN0,
-      TRNS,TRNS,
-      INS,
-      TRNS,TRNS,TRNS
+           LALT,   Y,   P,  DOT, COMM, QUOT,  TAB,
+                   I,   U,    E,    O,    A, TRNS,
+            GRV,   X,   K,    J,    Q, SCLN, BSPC,
+                    HOME,  PGUP,  PGDN, END, DEL,
+     TRNS, TRNS,
+     TRNS,
+     TRNS,LCTRL, LSFT
     ),
 
 //    /* Keymap N: Blank/template layer
@@ -218,7 +176,6 @@ static const uint16_t PROGMEM fn_actions[] = {
     ACTION_FUNCTION(TEENSY_KEY),                    // FN0 - Teensy key
     ACTION_LAYER_MOMENTARY(1),                      // FN1 - Momentary Layer1
     ACTION_LAYER_MOMENTARY(2),                      // FN2 - Momentary Layer2
-    ACTION_LAYER_MOMENTARY(3),                      // FN3 - Momentary Layer3
-    ACTION_MACRO(0),                                // FN4 - Password0
+    ACTION_MACRO(0),                                // FN3 - Password0
 };
 
