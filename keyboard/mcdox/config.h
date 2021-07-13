@@ -30,12 +30,11 @@ Project located at <https://github.com/benblazak/ergodox-firmware>
 
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x1111
+#define VENDOR_ID       0xf055
+#define PRODUCT_ID      0x0000
 #define DEVICE_VER      0x0001
-#define MANUFACTURER    TMK/dmcewan
-#define PRODUCT         mcdox
-#define DESCRIPTION     t.m.k. keyboard firmware for mcdox
+#define MANUFACTURER    DaveMcEwan
+#define PRODUCT         mcdox/vDec2014-TMK
 
 #define MATRIX_ROWS 14
 #define MATRIX_COLS 6
